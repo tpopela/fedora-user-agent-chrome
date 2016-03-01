@@ -22,16 +22,18 @@ document.addEventListener('DOMContentLoaded', function () {
   // inspired with https://developer.chrome.com/extensions/webRequest
   chrome.webRequest.onBeforeSendHeaders.addListener(
     function(details) {
-      var headers = details.requestHeaders;
-      var headersLength = headers.length;
-      
-      for (var i = 0; i < headersLength; i++) {
-        if (headers[i].name === 'User-Agent') {
-          headers[i].value = headers[i].value.replace("; Linux", "; Fedora; Linux");
-          break;
+      if (!detail.url.indexOf("www.netflix.com")) {
+        var headers = details.requestHeaders;
+        var headersLength = headers.length;
+
+        for (var i = 0; i < headersLength; i++) {
+          if (headers[i].name === 'User-Agent') {
+            headers[i].value = headers[i].value.replace("; Linux", "; Fedora; Linux");
+            break;
+          }
         }
+        return {requestHeaders: headers};
       }
-      return {requestHeaders: headers};
     },
     {urls: ["<all_urls>"]},
     ["blocking", "requestHeaders"]);
