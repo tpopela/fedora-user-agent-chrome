@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // inspired with https://developer.chrome.com/extensions/webRequest
   chrome.webRequest.onBeforeSendHeaders.addListener(
     function(details) {
-      if (!detail.url.indexOf("www.netflix.com")) {
+      if (details.url.indexOf("www.netflix.com") == -1) {
         var headers = details.requestHeaders;
         var headersLength = headers.length;
 

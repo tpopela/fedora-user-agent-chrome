@@ -1,7 +1,7 @@
 {
   "name": "Fedora User Agent",
   "description": "Modifies your User-Agent string to contain the name of Fedora Linux distribution.",
-  "version": "0.0.0.2",
+  "version": "0.0.0.3",
   "permissions": [
     "webRequest",
     "webRequestBlocking",
