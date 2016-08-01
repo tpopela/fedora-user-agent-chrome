@@ -18,23 +18,27 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-document.addEventListener('DOMContentLoaded', function () {
-  // inspired with https://developer.chrome.com/extensions/webRequest
-  chrome.webRequest.onBeforeSendHeaders.addListener(
-    function(details) {
-      if (details.url.indexOf("www.netflix.com") == -1) {
-        var headers = details.requestHeaders;
-        var headersLength = headers.length;
+(() => {
+  document.addEventListener('DOMContentLoaded', () => {
+    // inspired with https://developer.chrome.com/extensions/webRequest
+    chrome.webRequest.onBeforeSendHeaders.addListener(
+      details => {
+        if (details.url.indexOf('www.netflix.com') === -1) {
+          const headers = details.requestHeaders;
+          const headersLength = headers.length;
 
-        for (var i = 0; i < headersLength; i++) {
-          if (headers[i].name === 'User-Agent') {
-            headers[i].value = headers[i].value.replace("; Linux", "; Fedora; Linux");
-            break;
+          for (let i = 0; i < headersLength; i++) {
+            if (headers[i].name === 'User-Agent') {
+              headers[i].value = headers[i].value.replace('; Linux', '; Fedora; Linux');
+              break;
+            }
           }
+
+          return { requestHeaders: headers };
         }
-        return {requestHeaders: headers};
-      }
-    },
-    {urls: ["<all_urls>"]},
-    ["blocking", "requestHeaders"]);
-});
+      },
+      {urls: ['<all_urls>']},
+      ['blocking', 'requestHeaders']
+    );
+  });
+})();
