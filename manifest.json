@@ -8,10 +8,12 @@
     "*://*/*"
   ],
   "background": {
-    "scripts": ["background.js"] },
+    "scripts": ["background.js"]
+  },
   "icons": {
     "48": "fedora_48.png",
-    "128": "fedora_128.png" },
+    "128": "fedora_128.png"
+  },
   "manifest_version": 2,
   "author": "Tomas Popela, tpopela@redhat.com"
 }
