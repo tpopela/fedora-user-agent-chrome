@@ -8,7 +8,7 @@ You can get if from [Google Chrome Store](https://chrome.google.com/webstore/det
 
 ###### Chrome
 
-1. Clone or [download](https://github.com/brenopolanski/notifier-for-udacity-reviewer/archive/master.zip) project;
+1. Clone or [download](https://github.com/brenopolanski/fedora-user-agent-chrome/archive/master.zip) project;
 
 2. Navigate to `chrome://extensions`
 
