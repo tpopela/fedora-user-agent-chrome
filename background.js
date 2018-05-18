@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015, 2016 Tomas Popela <tpopela@redhat.com>
+ * Copyright (C) 2015-2017 Tomas Popela <tpopela@redhat.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -23,28 +23,17 @@
     // inspired with https://developer.chrome.com/extensions/webRequest
     chrome.webRequest.onBeforeSendHeaders.addListener(
       details => {
-        let anchor = document.createElement('a');
+        const headers = details.requestHeaders;
+        const headersLength = headers.length;
 
-        anchor.href = details.url;
-        /* It's not great that various sites are still so heavily dependant on
-         * the User-Agent..
-         * netflix.com - https://bugzilla.redhat.com/show_bug.cgi?id=1313244
-         * onenote.com - https://bugzilla.redhat.com/show_bug.cgi?id=1368571
-         */
-        if (anchor.hostname !== 'www.netflix.com' &&
-            anchor.hostname !== 'www.onenote.com') {
-          const headers = details.requestHeaders;
-          const headersLength = headers.length;
-
-          for (let i = 0; i < headersLength; i++) {
-            if (headers[i].name === 'User-Agent') {
-              headers[i].value = headers[i].value.replace('; Linux', '; Fedora; Linux');
-              break;
-            }
+        for (let i = 0; i < headersLength; i++) {
+          if (headers[i].name === 'User-Agent') {
+            headers[i].value = headers[i].value.replace('; Linux', '; Fedora; Linux');
+            break;
           }
-
-          return { requestHeaders: headers };
         }
+
+        return { requestHeaders: headers };
       },
       {urls: ['<all_urls>']},
       ['blocking', 'requestHeaders']
