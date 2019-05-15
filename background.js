@@ -28,7 +28,9 @@
 
         for (let i = 0; i < headersLength; i++) {
           if (headers[i].name === 'User-Agent') {
-            headers[i].value = headers[i].value.replace('; Linux', '; Fedora; Linux');
+            const value = headers[i].value;
+            if (!value.includes('; Fedora;'))
+              headers[i].value = value.replace('; Linux', '; Fedora; Linux');
             break;
           }
         }
