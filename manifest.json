@@ -5,7 +5,9 @@
   "permissions": [
     "webRequest",
     "webRequestBlocking",
-    "*://*/*"
+    "*://*/*",
+    "ws://*/*",
+    "wss://*/*"
   ],
   "background": {
     "scripts": ["background.js"]
