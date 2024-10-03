@@ -1,8 +1,10 @@
+# As announced in https://discussion.fedoraproject.org/t/announcement-removal-of-fedora-from-browsers-user-agent-string/38835 the extension was unpublished from Google Chrome Store.
+
 # <img src="fedora_128.png" width="45" align="left"> Fedora User Agent
 
 Google Chrome Extension that modifies User-Agent string in outgoing requests to contain the name of Linux based distribution Fedora.
 
-You can get if from [Google Chrome Store](https://chrome.google.com/webstore/detail/fedora-user-agent/hojggiaghnldpcknpbciehjcaoafceil).
+~~You can get if from [Google Chrome Store](https://chrome.google.com/webstore/detail/fedora-user-agent/hojggiaghnldpcknpbciehjcaoafceil).~~
 
 ## Testing
 
